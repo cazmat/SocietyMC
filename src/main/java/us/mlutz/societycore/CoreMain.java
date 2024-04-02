@@ -84,4 +84,8 @@ public class CoreMain
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
     }
+
+    public static void logInfo(String s) {
+        LOGGER.info(s);
+    }
 }

@@ -1,0 +1,10 @@
+{
+  "homepage": "https://mlutz.us",
+  "1.19.2": {
+    "0.0.1": "Developmental Build 1"
+  },
+  "promos": {
+    "1.19.2-latest": "0.0.1",
+    "1.19.2-recommended": "0.0.1"
+  }
+}

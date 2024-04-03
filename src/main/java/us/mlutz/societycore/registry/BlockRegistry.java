@@ -27,8 +27,8 @@ public class BlockRegistry {
         register_blockItem(name, toReturn, tab);
         return toReturn;
     }
-    private static <T extends Block> RegistryObject<Item> register_blockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
-        return ItemRegistry.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+    private static <T extends Block> void register_blockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
+        ItemRegistry.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
     }
     public static void register(IEventBus iEventBus) {
         BLOCKS.register(iEventBus);

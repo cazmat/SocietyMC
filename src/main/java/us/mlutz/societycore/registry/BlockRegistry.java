@@ -10,8 +10,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import us.mlutz.czlib.CZLib;
 import us.mlutz.societycore.Constants;
-import us.mlutz.societycore.CoreMain;
 
 import java.util.function.Supplier;
 
@@ -32,6 +32,6 @@ public class BlockRegistry {
     }
     public static void register(IEventBus iEventBus) {
         BLOCKS.register(iEventBus);
-        CoreMain.logInfo("Registering " + BLOCKS.getEntries().size() + " blocks.");
+        CZLib.Log.info(Constants.ModID, String.format("Registering %s blocks.", BLOCKS.getEntries().size()));
     }
 }

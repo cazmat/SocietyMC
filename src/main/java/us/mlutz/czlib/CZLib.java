@@ -2,13 +2,16 @@ package us.mlutz.czlib;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.ParseResults;
+import com.mojang.logging.LogUtils;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.server.ServerLifecycleHooks;
+import org.slf4j.Logger;
 
 public class CZLib {
+    private static final Logger LOGGER = LogUtils.getLogger();
     public static String getResourceLocation(String a, String b) {
         return a + ":" + b;
     }
@@ -26,6 +29,20 @@ public class CZLib {
         }
         public static void executeServerFunction(String f, ServerLevel l) {
             executeServerCommand(String.format("function %s", f), l);
+        }
+    }
+    public static class Log {
+        public static void debug(String mid, String message) {
+            LOGGER.debug(String.format("[%1$s] %2$s", mid, message));
+        }
+        public static void error(String mid, String message) {
+            LOGGER.error(String.format("[%1$s] %2$s", mid, message));
+        }
+        public static void info(String mid, String message) {
+            LOGGER.info(String.format("[%1$s] %2$s", mid, message));
+        }
+        public static void warning(String mid, String message) {
+            LOGGER.warn(String.format("[%1$s] %2$s", mid, message));
         }
     }
 }

@@ -7,8 +7,8 @@ import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.server.ServerLifecycleHooks;
+import us.mlutz.czlib.CZLib;
 import us.mlutz.societycore.Constants;
-import us.mlutz.societycore.CoreMain;
 import us.mlutz.societycore.datapack.DataPackHandler;
 
 @Mod.EventBusSubscriber
@@ -32,14 +32,14 @@ public class DimensionManager {
             String dimLocation = dim.dimension().location().toString();
             if(dimLocation.equals(Constants.AoxasDim)) {
                 if(aoxasDim == null) {
-                    CoreMain.logInfo("Found Aoxas dimension");
+                    CZLib.Log.info(Constants.ModID, String.format(Constants.DimFound, "Aoxas"));
                     aoxasDim = dim;
                     DataPackHandler.prepareDataPack(aoxasDim);
                 }
             }
             if(dimLocation.equals(Constants.LobbyDim)) {
                 if(lobbyDim == null) {
-                    CoreMain.logInfo("Found Lobby Dimension");
+                    CZLib.Log.info(Constants.ModID, String.format(Constants.DimFound, "Lobby"));
                     lobbyDim = dim;
                     DataPackHandler.prepareDataPack(lobbyDim);
                 }

@@ -19,7 +19,10 @@ public class CoreMain {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    public static void logDebug(String s) { LOGGER.debug(s); }
+    public static void logError(String s) { LOGGER.error(s); }
     public static void logInfo(String s) {
         LOGGER.info(s);
     }
+    public static void logWarning(String s) { LOGGER.warn(s); }
 }

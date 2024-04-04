@@ -12,7 +12,7 @@ public class CZLib {
     public static String getResourceLocation(String a, String b) {
         return a + ":" + b;
     }
-    public class API {
+    public static class API {
         public static void executeServerCommand(String c, ServerLevel l) {
             MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
             if(server == null) {

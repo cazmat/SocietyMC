@@ -1,8 +1,8 @@
 package us.mlutz.societycore.datapack;
 
 import net.minecraft.server.level.ServerLevel;
+import us.mlutz.czlib.CZLib;
 import us.mlutz.societycore.CoreMain;
-import us.mlutz.societycore.command.CommandHandler;
 import us.mlutz.societycore.dimension.DimensionManager;
 import us.mlutz.societycore.dimension.data.AoxasData;
 import us.mlutz.societycore.dimension.data.LobbyData;
@@ -30,6 +30,6 @@ public class DataPackHandler {
         String dimensionLocation = level.dimension().location().toString();
         CoreMain.logInfo(dimensionLocation);
         String dataFunction = dimensionLocation+"_load";
-        CommandHandler.executeServerFunction(dataFunction, level);
+        CZLib.API.executeServerFunction(dataFunction, level);
     }
 }

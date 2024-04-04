@@ -5,6 +5,7 @@ import us.mlutz.societycore.CoreMain;
 import us.mlutz.societycore.command.CommandHandler;
 import us.mlutz.societycore.dimension.DimensionManager;
 import us.mlutz.societycore.dimension.data.AoxasData;
+import us.mlutz.societycore.dimension.data.LobbyData;
 
 public class DataPackHandler {
     public static void prepareDataPack(ServerLevel level) {
@@ -14,6 +15,14 @@ public class DataPackHandler {
             } else {
                 runDataPack(level);
                 AoxasData.get().setDimensionLoaded(true);
+            }
+        }
+        if(level == DimensionManager.getLobbyDim()) {
+            if(LobbyData.get().isDimensionLoaded()) {
+                CoreMain.logInfo("Skipping datapack for Lobby dimension.");
+            } else {
+                runDataPack(level);
+                LobbyData.get().setDimensionLoaded(true);
             }
         }
     }

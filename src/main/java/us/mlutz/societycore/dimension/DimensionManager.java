@@ -14,16 +14,18 @@ import us.mlutz.societycore.datapack.DataPackHandler;
 @Mod.EventBusSubscriber
 public class DimensionManager {
     private static ServerLevel aoxasDim = null;
+    private static ServerLevel lobbyDim = null;
     @SubscribeEvent
     public static void handleServerAboutToStart(ServerAboutToStartEvent event) {
         aoxasDim = null;
+        lobbyDim = null;
     }
     @SubscribeEvent
     public static void handleServerStarted(ServerStartedEvent event) {
         mapServerDimensions(event.getServer());
     }
     private static void mapServerDimensions(MinecraftServer server) {
-        if(aoxasDim != null) {
+        if(aoxasDim != null && lobbyDim != null) {
             return;
         }
         for(ServerLevel dim : server.getAllLevels()) {
@@ -35,6 +37,13 @@ public class DimensionManager {
                     DataPackHandler.prepareDataPack(aoxasDim);
                 }
             }
+            if(dimLocation.equals(Constants.LobbyDim)) {
+                if(lobbyDim == null) {
+                    CoreMain.logInfo("Found Lobby Dimension");
+                    lobbyDim = dim;
+                    DataPackHandler.prepareDataPack(lobbyDim);
+                }
+            }
         }
     }
     public static ServerLevel getAoxasDim() {
@@ -42,5 +51,11 @@ public class DimensionManager {
             mapServerDimensions(ServerLifecycleHooks.getCurrentServer());
         }
         return aoxasDim;
+    }
+    public static ServerLevel getLobbyDim() {
+        if(lobbyDim == null) {
+            mapServerDimensions(ServerLifecycleHooks.getCurrentServer());
+        }
+        return lobbyDim;
     }
 }

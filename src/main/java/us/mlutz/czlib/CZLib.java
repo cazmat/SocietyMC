@@ -7,6 +7,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import org.slf4j.Logger;
 
@@ -43,6 +44,19 @@ public class CZLib {
         }
         public static void warning(String mid, String message) {
             LOGGER.warn(String.format("[%1$s] %2$s", mid, message));
+        }
+    }
+    public static class Teleport {
+        public static boolean player(ServerPlayer player, ServerLevel level, int x, int y, int z) {
+            if(player.getLevel().isClientSide() || level == null) {
+                return false;
+            }
+            if(player.level == level) {
+                player.teleportTo(x, y, z);
+                return true;
+            }
+            player.teleportTo(level, x, y, z, player.getYRot(), player.getXRot());
+            return true;
         }
     }
 }

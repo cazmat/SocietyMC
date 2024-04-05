@@ -41,7 +41,7 @@ public class LobbyData extends SavedData {
             return;
         }
         LobbyData.server = server;
-        LobbyData.dimension = DimensionManager.getAoxasDim();
+        LobbyData.dimension = DimensionManager.getLobbyDim();
         if(LobbyData.dimension != null) {
             LobbyData.data = LobbyData.dimension.getDataStorage().computeIfAbsent(LobbyData::load, LobbyData::new, Constants.ModID);
         }
@@ -55,10 +55,10 @@ public class LobbyData extends SavedData {
     }
 
     public static LobbyData load(CompoundTag compoundTag) {
-        LobbyData aoxasData = new LobbyData();
-        aoxasData.dimensionLoaded = compoundTag.getBoolean("DimensionLoaded");
-        aoxasData.lastUpdate = compoundTag.getLong("LastUpdate");
-        return aoxasData;
+        LobbyData lobbyData = new LobbyData();
+        lobbyData.dimensionLoaded = compoundTag.getBoolean("DimensionLoaded");
+        lobbyData.lastUpdate = compoundTag.getLong("LastUpdate");
+        return lobbyData;
     }
     @Override
     public @NotNull CompoundTag save(CompoundTag compoundTag) {

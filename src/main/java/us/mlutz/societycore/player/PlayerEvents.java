@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.List;
 
 @Mod.EventBusSubscriber
-public class DeathEvent {
+public class PlayerEvents {
     @SubscribeEvent
     public static void PlayerDrops(LivingDropsEvent event) {
         if(!(event.getEntity() instanceof ServerPlayer)) return;

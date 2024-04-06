@@ -22,6 +22,11 @@ public class BlockRegistry {
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)),
             CreativeModeTab.TAB_BUILDING_BLOCKS
     );
+    public static final RegistryObject<Block> DEATH_CRATE = register_block(
+            "death_crate",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)),
+            CreativeModeTab.TAB_INVENTORY
+    );
     private static <T extends Block> RegistryObject<T> register_block(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         register_blockItem(name, toReturn, tab);

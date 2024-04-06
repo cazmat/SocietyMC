@@ -2,6 +2,7 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = project.modversion
@@ -61,10 +62,25 @@ minecraft {
 }
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-repositories {}
+repositories {
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
+    maven {
+        url "https://cursemaven.com"
+    }
+}
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.19.2-43.2.14'
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${project.geckoVersion}")
+    runtimeOnly fg.deobf("curse.maven:jei-238222:5106178")
+    runtimeOnly fg.deobf("curse.maven:jade-324717:4800904")
 }
 jar {
     manifest {
